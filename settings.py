@@ -10,4 +10,4 @@ api_call_delay=2
 min_problem_offset=0
 # if set to None, keep fetching until no more solutions found.
 # if set to number, stop fetching once X problems fetched
-max_problem_offset=30
+max_problem_offset=None
