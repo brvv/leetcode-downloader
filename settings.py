@@ -1,6 +1,3 @@
-# MUST BE PROVIDED
-cookie_string=''
-
 # name of the repo that will be generated
 repo_name='leetcode repo'
 # seconds to wait between api calls. 0 will cause leetcode to not fullfill the request
