@@ -6,10 +6,14 @@ A program to download leetcode solutions. Automatically generates a repository w
 ### Dependencies
 Run
 ```
-pip install -r requirements.txt
+pipenv install
+```
+Alternatively
+```
+pip install requests GitPython python-dotenv
 ```
 ### Cookie String
-You have to add your cookie string to `settings.py`
+You have to add your cookie string to `.env`
 
 To find your cookie string, go to `leetcode.com` and log in.
 
@@ -18,19 +22,22 @@ When you are on a page with the response, go to the network part of your browser
 
 the cookie string should start with something like `csrftoken=` 
 
-copy the entire cookie and paste it into `settings.py`
+copy the entire cookie and paste it into `.env`
 
-`settings.py` should look something like this:
+`.env` should look something like this:
 
-```settings.py
-# MUST BE PROVIDED
-cookie_string='csrftoken=XXXXXXXXXX'
+```.env
+COOKIE_STRING=csrftoken=SOMERANDOMSTRING
 ...
 ```
 
 ### Running the program
 After installing the dependencies and adding your cookie string to `settings.py`, run
-
+```
+pipenv run python main.py
+```
+or
 ```
 python main.py
 ```
+
