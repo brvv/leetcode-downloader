@@ -43,6 +43,15 @@ class SolutionFetcher:
 
     def _fetch_page(self):
         page = requests.get(self._get_endpoint(), cookies=self.cookies)
+
+        while page.status_code != 200:
+            print('Failed to fetch. Waiting and trying again')
+            time.sleep(5)
+            page = requests.get(self._get_endpoint(), cookies=self.cookies)
+
+            if page.status_code == 200:
+                print('Success! keep going')
+
         page_json = page.json()
         
         return page_json
