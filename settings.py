@@ -1,7 +1,7 @@
 # name of the repo that will be generated
 repo_name='leetcode repo'
 # seconds to wait between api calls. 0 will cause leetcode to not fullfill the request
-api_call_delay=2
+api_call_delay=3
 
 # skip the most recent X submitted problems
 min_problem_offset=0

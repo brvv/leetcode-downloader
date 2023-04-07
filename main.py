@@ -1,5 +1,6 @@
 from CommitGenerator import CommitGenerator
 from SolutionFetcher import SolutionFetcher
+from SubmissionManager import SubmissionManager
 from dotenv import dotenv_values
 from git import Repo
 import time
@@ -34,13 +35,28 @@ if __name__=='__main__':
 
 
     fetcher = SolutionFetcher(cookie, min_offset, max_offset)
+    manager = SubmissionManager(repo_path)
     generator = CommitGenerator(repo_path)
 
-    while fetcher.has_next_page():
-        print('Offset', fetcher.offset)
+    while fetcher.has_next_page() and manager.shouldFetchNext():
+        print('fetching offset', fetcher.offset)
         page_submissions = fetcher.fetch_next_submissions()
         for submission in page_submissions:
             print('\t', submission['title'])
-            generator.submit(submission)
+        manager.addSubmissions(page_submissions)
         time.sleep(delay)
+
+    if not manager.shouldFetchNext():
+        print('Found existing submission and aborted fetching.')
+
+    print('sorting submissions')
+    sorted_submissions = manager.getSortedSubmissions()
+    print('generating commits')
+
+    for submission in sorted_submissions:
+        status = generator.submit(submission)
+        if status:
+            print('commit for', submission['title'])
+
+
     print('Done!')
