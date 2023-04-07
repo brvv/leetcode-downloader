@@ -6,6 +6,7 @@ name = "pypi"
 [packages]
 gitpython = "==3.1.31"
 requests = "==2.28.2"
+python-dotenv = "*"
 
 [dev-packages]
 
